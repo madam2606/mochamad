@@ -1,0 +1,49 @@
+// Scroll Animation untuk ikon Sosial Media
+const socialIcons = document.querySelectorAll('.social-icon');
+
+// Fungsi untuk menampilkan ikon sosial media dengan efek fade in
+function showSocialIconsOnScroll() {
+    const scrollY = window.scrollY;
+    socialIcons.forEach(icon => {
+        const iconPosition = icon.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (iconPosition < windowHeight) {
+            icon.classList.add('visible');
+        } else {
+            icon.classList.remove('visible');
+        }
+    });
+}
+
+// Event listener untuk scroll event
+window.addEventListener('scroll', showSocialIconsOnScroll);
+
+// Efek Form - Validasi dan Animasi Kirim Pesan
+const contactForm = document.querySelector('form');
+const submitButton = contactForm.querySelector('button');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Menghentikan pengiriman form secara default
+    submitButton.disabled = true; // Menonaktifkan tombol untuk mencegah pengiriman ganda
+    submitButton.textContent = "Mengirim...";
+
+    setTimeout(() => {
+        contactForm.reset(); // Reset form setelah 2 detik
+        submitButton.disabled = false; // Mengaktifkan tombol kembali
+        submitButton.textContent = "Kirim Pesan";
+        alert("Pesan berhasil dikirim!"); // Notifikasi pengiriman pesan berhasil
+    }, 2000); // Simulasi delay pengiriman pesan
+});
+
+// Mengatur animasi ikon sosial media saat menggulir
+const socialMedia = document.querySelector('.social-media');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        socialMedia.classList.add('scrolled');
+    } else {
+        socialMedia.classList.remove('scrolled');
+    }
+});
+
